@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garantie Protection Accident - AG2R La Mondiale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066CC;
+            --secondary-blue: #004499;
+            --accent-purple: #764ba2;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%);
+            --gradient-3: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a1a3e, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .bg-animation span:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+
+        .bg-animation span:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .bg-animation span:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .bg-animation span:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-2);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: transparent;
+            padding: 180px 20px 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #fff 0%, #667eea 50%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(118, 75, 162, 0.8)); }
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .price-range {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            display: inline-block;
+        }
+
+        .price-range h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #92FE9D;
+        }
+
+        .price-range .price {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* Formulas Section */
+        .formulas {
+            padding: 80px 20px;
+        }
+
+        .formula-type {
+            margin-bottom: 60px;
+        }
+
+        .formula-type h3 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .formula-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-card::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .formula-card:hover::before {
+            opacity: 1;
+        }
+
+        .formula-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .formula-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .formula-name {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .formula-badge {
+            background: var(--gradient-2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .formula-prices {
+            margin: 20px 0;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .formula-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .formula-features li {
+            padding: 8px 0;
+            opacity: 0.9;
+        }
+
+        .formula-features li::before {
+            content: "✓ ";
+            color: #92FE9D;
+            font-weight: bold;
+        }
+
+        /* Coverage Section */
+        .coverage {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .coverage-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .coverage-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .coverage-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .coverage-examples {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(102, 126, 234, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            width: 350px;
+            max-width: 90vw;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .coverage-item.active .coverage-examples {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Dark overlay when examples are shown */
+        .coverage-item.active::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .coverage-examples h4 {
+            color: #92FE9D;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .coverage-examples ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .coverage-examples li {
+            padding: 5px 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .coverage-examples li::before {
+            content: "• ";
+            color: #92FE9D;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 20px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5em;
+            color: #667eea;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 25px;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            backdrop-filter: blur(10px);
+            padding: 100px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient-2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Section Titles */
+        h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .formula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .coverage-examples {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">AG2R LA MONDIALE</div>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#stats">Chiffres clés</a></li>
+                <li><a href="#formulas">Formules</a></li>
+                <li><a href="#coverage">Couvertures</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Garantie Protection Accident</h1>
+        <p>Protégez-vous et votre famille contre les accidents de la vie courante avec une couverture complète et adaptée à vos besoins</p>
+        
+        <div class="price-range">
+            <h3>Tarifs accessibles pour tous</h3>
+            <div class="price">De 9,50€ à 72,45€/mois</div>
+            <p style="margin-top: 10px; opacity: 0.8;">6 formules adaptées à votre situation</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <h2>Les accidents de la vie en chiffres</h2>
+            <p class="section-subtitle">Comprendre l'importance d'une protection adaptée</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">11 millions</div>
+                    <div class="stat-label">d'accidents de la vie chaque année en France</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24 000</div>
+                    <div class="stat-label">décès par an dus aux accidents domestiques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3ème</div>
+                    <div class="stat-label">cause de mortalité en France</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1 sur 5</div>
+                    <div class="stat-label">senior déclare au moins un accident par an</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulas Section -->
+    <section class="formulas" id="formulas">
+        <div class="container">
+            <h2>Nos formules de protection</h2>
+            <p class="section-subtitle">2 types de couvertures, 6 formules pour s'adapter à tous les besoins</p>
+            
+            <!-- Formules Essentielles -->
+            <div class="formula-type">
+                <h3>🛡️ Formules Essentielles</h3>
+                <div class="formula-grid">
+                    <div class="formula-card">
+                        <div class="formula-header">
+                            <span class="formula-name">Essentielle E1</span>
+                            <span class="formula-badge">Entrée de gamme</span>
+                        </div>
+                        <div class="formula-prices">
+                            <div class="price-item">
+                                <span>Solo</span>
+                                <strong>9,50€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Duo</span>
+                                <strong>17,10€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Famille</span>
+                                <strong>21,85€/mois</strong>
+                            </div>
+                        </div>
+                        <ul class="formula-features">
+                            <li>Capital décès : 50 000€</li>
+                            <li>Invalidité : 100 000€ (dès 5%)</li>
+                            <li>Assistance incluse</li>
+                            <li>Limite mineurs : 7 500€</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-card">
+                        <div class="formula-header">
+                            <span class="formula-name">Essentielle E2</span>
+                            <span class="formula-badge">Renforcée</span>
+                        </div>
+                        <div class="formula-prices">
+                            <div class="price-item">
+                                <span>Solo</span>
+                                <strong>17,10€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Duo</span>
+                                <strong>31,50€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Famille</span>
+                                <strong>40,25€/mois</strong>
+                            </div>
+                        </div>
+                        <ul class="formula-features">
+                            <li>Capital décès : 100 000€</li>
+                            <li>Invalidité : 200 000€ (dès 5%)</li>
+                            <li>Assistance incluse</li>
+                            <li>Limite mineurs : 7 500€</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formules Intégrales -->
+            <div class="formula-type">
+                <h3>⭐ Formules Intégrales</h3>
+                <div class="formula-grid">
+                    <div class="formula-card">
+                        <div class="formula-header">
+                            <span class="formula-name">Intégrale I1</span>
+                            <span class="formula-badge">Complète</span>
+                        </div>
+                        <div class="formula-prices">
+                            <div class="price-item">
+                                <span>Solo</span>
+                                <strong>13,50€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Duo</span>
+                                <strong>24,30€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Famille</span>
+                                <strong>31,05€/mois</strong>
+                            </div>
+                        </div>
+                        <ul class="formula-features">
+                            <li>Capital décès : 50 000€</li>
+                            <li>Invalidité : 100 000€ (dès 5%)</li>
+                            <li>Hospitalisation : 50€/jour</li>
+                            <li>Petits accidents : 100€</li>
+                            <li>Assistance incluse</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-card">
+                        <div class="formula-header">
+                            <span class="formula-name">Intégrale I2</span>
+                            <span class="formula-badge">Confort</span>
+                        </div>
+                        <div class="formula-prices">
+                            <div class="price-item">
+                                <span>Solo</span>
+                                <strong>19,50€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Duo</span>
+                                <strong>35,10€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Famille</span>
+                                <strong>44,85€/mois</strong>
+                            </div>
+                        </div>
+                        <ul class="formula-features">
+                            <li>Capital décès : 75 000€</li>
+                            <li>Invalidité : 150 000€ (dès 5%)</li>
+                            <li>Hospitalisation : 75€/jour</li>
+                            <li>Petits accidents : 150€</li>
+                            <li>Assistance incluse</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-card">
+                        <div class="formula-header">
+                            <span class="formula-name">Intégrale I3</span>
+                            <span class="formula-badge">Premium</span>
+                        </div>
+                        <div class="formula-prices">
+                            <div class="price-item">
+                                <span>Solo</span>
+                                <strong>25,50€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Duo</span>
+                                <strong>45,90€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Famille</span>
+                                <strong>58,65€/mois</strong>
+                            </div>
+                        </div>
+                        <ul class="formula-features">
+                            <li>Capital décès : 100 000€</li>
+                            <li>Invalidité : 200 000€ (dès 5%)</li>
+                            <li>Hospitalisation : 100€/jour</li>
+                            <li>Petits accidents : 200€</li>
+                            <li>Assistance incluse</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-card">
+                        <div class="formula-header">
+                            <span class="formula-name">Intégrale I4</span>
+                            <span class="formula-badge">Excellence</span>
+                        </div>
+                        <div class="formula-prices">
+                            <div class="price-item">
+                                <span>Solo</span>
+                                <strong>31,50€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Duo</span>
+                                <strong>56,70€/mois</strong>
+                            </div>
+                            <div class="price-item">
+                                <span>Famille</span>
+                                <strong>72,45€/mois</strong>
+                            </div>
+                        </div>
+                        <ul class="formula-features">
+                            <li>Capital décès : 125 000€</li>
+                            <li>Invalidité : 250 000€ (dès 5%)</li>
+                            <li>Hospitalisation : 125€/jour</li>
+                            <li>Petits accidents : 250€</li>
+                            <li>Assistance incluse</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Section -->
+    <section class="coverage" id="coverage">
+        <div class="container">
+            <h2>Situations couvertes</h2>
+            <p class="section-subtitle">Cliquez sur chaque situation pour voir des exemples concrets</p>
+            
+            <div class="coverage-grid">
+                <div class="coverage-item" onclick="toggleExamples(this, event)">
+                    <div class="coverage-icon">🏠</div>
+                    <h3>Accidents domestiques</h3>
+                    <div class="coverage-examples">
+                        <h4>Exemples d'accidents couverts</h4>
+                        <ul>
+                            <li>Chute dans les escaliers</li>
+                            <li>Brûlure en cuisinant</li>
+                            <li>Coupure lors du bricolage</li>
+                            <li>Électrocution</li>
+                            <li>Intoxication au monoxyde</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <span style="font-size: 0.9em; opacity: 0.7;">Cliquez n'importe où pour fermer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coverage-item" onclick="toggleExamples(this, event)">
+                    <div class="coverage-icon">🚗</div>
+                    <h3>Accidents de circulation</h3>
+                    <div class="coverage-examples">
+                        <h4>Exemples d'accidents couverts</h4>
+                        <ul>
+                            <li>Accident en tant que piéton</li>
+                            <li>Chute à vélo</li>
+                            <li>Accident de trottinette</li>
+                            <li>Passager d'un véhicule</li>
+                            <li>Accident de moto</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <span style="font-size: 0.9em; opacity: 0.7;">Cliquez n'importe où pour fermer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coverage-item" onclick="toggleExamples(this, event)">
+                    <div class="coverage-icon">⚽</div>
+                    <h3>Sports et loisirs</h3>
+                    <div class="coverage-examples">
+                        <h4>Exemples d'accidents couverts</h4>
+                        <ul>
+                            <li>Entorse au football</li>
+                            <li>Chute à ski</li>
+                            <li>Accident de randonnée</li>
+                            <li>Blessure au tennis</li>
+                            <li>Noyade à la piscine</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <span style="font-size: 0.9em; opacity: 0.7;">Cliquez n'importe où pour fermer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coverage-item" onclick="toggleExamples(this, event)">
+                    <div class="coverage-icon">🏥</div>
+                    <h3>Accidents médicaux</h3>
+                    <div class="coverage-examples">
+                        <h4>Exemples d'accidents couverts</h4>
+                        <ul>
+                            <li>Infection nosocomiale</li>
+                            <li>Erreur de diagnostic</li>
+                            <li>Complication chirurgicale</li>
+                            <li>Allergie médicamenteuse</li>
+                            <li>Accident d'anesthésie</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <span style="font-size: 0.9em; opacity: 0.7;">Cliquez n'importe où pour fermer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coverage-item" onclick="toggleExamples(this, event)">
+                    <div class="coverage-icon">⚠️</div>
+                    <h3>Agressions / Attentats</h3>
+                    <div class="coverage-examples">
+                        <h4>Exemples d'accidents couverts</h4>
+                        <ul>
+                            <li>Vol avec violence</li>
+                            <li>Agression physique</li>
+                            <li>Attentat terroriste</li>
+                            <li>Morsure de chien</li>
+                            <li>Vandalisme avec blessure</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <span style="font-size: 0.9em; opacity: 0.7;">Cliquez n'importe où pour fermer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coverage-item" onclick="toggleExamples(this, event)">
+                    <div class="coverage-icon">🌍</div>
+                    <h3>Catastrophes naturelles</h3>
+                    <div class="coverage-examples">
+                        <h4>Exemples d'accidents couverts</h4>
+                        <ul>
+                            <li>Inondation</li>
+                            <li>Tempête</li>
+                            <li>Tremblement de terre</li>
+                            <li>Avalanche</li>
+                            <li>Glissement de terrain</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <span style="font-size: 0.9em; opacity: 0.7;">Cliquez n'importe où pour fermer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Questions fréquentes</h2>
+            <p class="section-subtitle">Tout ce que vous devez savoir sur notre garantie</p>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quelle est la différence entre les formules Essentielles et Intégrales ?
+                </div>
+                <div class="faq-answer">
+                    Les formules Essentielles (E1 et E2) couvrent le décès et l'invalidité avec une assistance de base. Les formules Intégrales (I1 à I4) ajoutent en plus le forfait hospitalisation (50€ à 125€/jour) et le forfait petits accidents (fractures, brûlures, entorses, bris de dents) avec des montants de 100€ à 250€ selon la formule.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Qui peut souscrire et être couvert ?
+                </div>
+                <div class="faq-answer">
+                    Toute personne jusqu'à 75 ans peut souscrire (couverture jusqu'à 80 ans). La garantie couvre l'assuré principal, son conjoint, ses enfants jusqu'à 25 ans s'ils sont fiscalement à charge, et même les petits-enfants pendant les vacances scolaires (forfait petits accidents limité à 125€/an).
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Y a-t-il un questionnaire médical à remplir ?
+                </div>
+                <div class="faq-answer">
+                    Non, aucun questionnaire médical n'est requis pour souscrire à notre Garantie Protection Accident. C'est l'un des avantages majeurs de notre offre, vous pouvez souscrire immédiatement sans formalités médicales.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quels sports sont exclus de la garantie ?
+                </div>
+                <div class="faq-answer">
+                    Les sports extrêmes comme l'alpinisme, l'escalade à plus de 20m, la plongée à plus de 20m, le parachutisme, le deltaplane, le ski hors-piste sont exclus. Les sports professionnels et les arts martiaux (sauf le judo) sont également exclus. Les baptêmes de sports aériens et de plongée restent couverts.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment est calculé le taux d'invalidité ?
+                </div>
+                <div class="faq-answer">
+                    Le taux d'invalidité est déterminé par un médecin expert selon le barème du concours médical, sur une échelle de 0 à 100%. L'évaluation se fait indépendamment de votre profession ou de votre âge. En cas de désaccord, une expertise contradictoire peut être demandée.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quels services d'assistance sont inclus ?
+                </div>
+                <div class="faq-answer">
+                    L'assistance 24h/24 et 7j/7 comprend : garde à domicile des enfants de moins de 15 ans (5 jours max), aide à domicile (auxiliaire de vie, aide-ménagère), garde des animaux de compagnie jusqu'à 230€, rapatriement ou transport sanitaire pour les accidents survenus à plus de 50 km du domicile ou à l'étranger (voyages de moins de 90 jours).
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Les tarifs augmentent-ils avec l'âge ?
+                </div>
+                <div class="faq-answer">
+                    Non, c'est un avantage important de notre offre : le montant de votre cotisation reste fixe et n'augmente pas en fonction de votre âge, contrairement à de nombreuses autres assurances. Le tarif que vous payez à la souscription reste le même pendant toute la durée du contrat.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quelles sont les promotions disponibles ?
+                </div>
+                <div class="faq-answer">
+                    Nous offrons 1 mois de cotisation gratuit à la souscription et une réduction de 20% pour le 2ème assuré si la souscription est faite en même temps. Pour les formules Duo et Famille, ces réductions sont déjà intégrées dans les tarifs affichés.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Protégez votre famille dès aujourd'hui</h2>
+            <p>✨ 1 mois offert + -20% pour le 2ème assuré</p>
+            <a href="#" class="cta-button">Demander un devis gratuit</a>
+        </div>
+    </section>
+
+    <script>
+        // Coverage Examples Toggle
+        function toggleExamples(element, event) {
+            if (event) event.stopPropagation();
+            
+            // Close all other examples
+            document.querySelectorAll('.coverage-item').forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current element
+            element.classList.toggle('active');
+        }
+
+        // Close examples when clicking anywhere on the page
+        document.addEventListener('click', function(e) {
+            // Si on clique en dehors des coverage-items
+            if (!e.target.closest('.coverage-item')) {
+                document.querySelectorAll('.coverage-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                // Close other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .formula-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add fadeInUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
