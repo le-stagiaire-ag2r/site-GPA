@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Épargne - AG2R La Mondiale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066CC;
+            --secondary-blue: #004499;
+            --accent-green: #92FE9D;
+            --accent-cyan: #48dbfb;
+            --dark-bg: #0a0e27;
+            --gradient-savings: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+            --gradient-2: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%);
+            --gradient-3: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a1a3e, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(72, 219, 251, 0.1);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+            background: rgba(72, 219, 251, 0.15);
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+            background: rgba(10, 189, 227, 0.15);
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+            background: rgba(0, 201, 255, 0.1);
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+            background: rgba(146, 254, 157, 0.1);
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+            background: rgba(72, 219, 251, 0.1);
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+            background: rgba(10, 189, 227, 0.1);
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(72, 219, 251, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 20px 60px;
+            text-align: center;
+            position: relative;
+            background: var(--gradient-savings);
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-icon {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(72, 219, 251, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
+        }
+
+        .product-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-savings);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(72, 219, 251, 0.6);
+            box-shadow: 0 20px 40px rgba(72, 219, 251, 0.3);
+            background: rgba(72, 219, 251, 0.05);
+        }
+
+        .product-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .product-title {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            width: fit-content;
+            background: rgba(10, 189, 227, 0.2);
+            color: #48dbfb;
+            border: 1px solid #48dbfb;
+        }
+
+        .product-description {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95em;
+        }
+
+        .product-features li::before {
+            content: "✓ ";
+            color: #48dbfb;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .product-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-savings);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-align: center;
+            margin-top: auto;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .product-link:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .info-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-content h3 {
+            font-size: 2em;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .info-content p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.7);
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-top: 1px solid rgba(72, 219, 251, 0.3);
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-left {
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="index.html" class="back-btn">
+                    <span>←</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-icon">💰</div>
+        <h1>Épargne</h1>
+        <p>Faites fructifier votre patrimoine avec nos solutions d'épargne flexibles et performantes</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="section-title">
+            <h2>Nos Solutions d'Épargne</h2>
+        </div>
+
+        <div class="products-grid">
+            <!-- Vivepargne -->
+            <div class="product-card">
+                <div class="product-icon">📈</div>
+                <h3 class="product-title">Vivepargne</h3>
+                <span class="product-badge">Bientôt disponible</span>
+                <p class="product-description">
+                    L'assurance vie multisupport pour faire fructifier votre épargne selon votre profil d'investisseur.
+                </p>
+                <ul class="product-features">
+                    <li>Plus de 500 supports d'investissement</li>
+                    <li>Gestion pilotée disponible</li>
+                    <li>Versements libres dès 50€</li>
+                    <li>0€ de frais d'entrée</li>
+                    <li>Rachats partiels disponibles</li>
+                </ul>
+                <a href="#" class="product-link">Prochainement</a>
+            </div>
+
+            <!-- Certificat Mutualiste -->
+            <div class="product-card">
+                <div class="product-icon">🏦</div>
+                <h3 class="product-title">Certificat Mutualiste</h3>
+                <span class="product-badge">Bientôt disponible</span>
+                <p class="product-description">
+                    Un placement solidaire et sécurisé qui finance des projets à forte utilité sociale.
+                </p>
+                <ul class="product-features">
+                    <li>Rendement garanti attractif</li>
+                    <li>Capital garanti à tout moment</li>
+                    <li>Épargne solidaire et responsable</li>
+                    <li>Fiscalité avantageuse</li>
+                    <li>Souscription dès 100€</li>
+                </ul>
+                <a href="#" class="product-link">Prochainement</a>
+            </div>
+
+            <!-- Patrimoine Sélection -->
+            <div class="product-card">
+                <div class="product-icon">💎</div>
+                <h3 class="product-title">Patrimoine Sélection</h3>
+                <span class="product-badge">Bientôt disponible</span>
+                <p class="product-description">
+                    La solution haut de gamme pour optimiser et diversifier votre patrimoine financier.
+                </p>
+                <ul class="product-features">
+                    <li>Gestion privée personnalisée</li>
+                    <li>Accès aux fonds exclusifs</li>
+                    <li>Conseiller patrimoine dédié</li>
+                    <li>Stratégies d'optimisation fiscale</li>
+                    <li>Investissement minimum : 100 000€</li>
+                </ul>
+                <a href="#" class="product-link">Prochainement</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="info-content">
+            <h3>L'expertise patrimoniale AG2R La Mondiale</h3>
+            <p>
+                Avec plus de 40 milliards d'euros d'actifs gérés, nous mettons notre expertise financière 
+                au service de vos projets d'épargne. Nos conseillers vous accompagnent pour construire 
+                une stratégie patrimoniale sur mesure, adaptée à vos objectifs et votre horizon de placement.
+            </p>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">40 Mds€</div>
+                    <div class="stat-label">d'actifs gérés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">supports disponibles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4,5%</div>
+                    <div class="stat-label">rendement moyen*</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2024 AG2R LA MONDIALE - Tous droits réservés</p>
+                <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.7;">*Performances passées ne préjugent pas des performances futures</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo click to home
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
