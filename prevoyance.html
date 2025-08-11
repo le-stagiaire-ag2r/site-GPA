@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prévoyance - AG2R La Mondiale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066CC;
+            --secondary-blue: #004499;
+            --accent-purple: #764ba2;
+            --accent-green: #92FE9D;
+            --dark-bg: #0a0e27;
+            --gradient-protection: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%);
+            --gradient-3: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a1a3e, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+            background: rgba(118, 75, 162, 0.15);
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+            background: rgba(146, 254, 157, 0.1);
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-protection);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 20px 60px;
+            text-align: center;
+            position: relative;
+            background: var(--gradient-protection);
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-icon {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-protection);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+        }
+
+        .product-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-protection);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .product-card.available {
+            border-color: rgba(146, 254, 157, 0.3);
+        }
+
+        .product-card.available:hover {
+            background: rgba(146, 254, 157, 0.05);
+            border-color: rgba(146, 254, 157, 0.6);
+            box-shadow: 0 20px 40px rgba(146, 254, 157, 0.3);
+        }
+
+        .product-card.available::before {
+            background: var(--gradient-3);
+        }
+
+        .product-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .product-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .badge-available {
+            background: rgba(146, 254, 157, 0.2);
+            color: #92FE9D;
+            border: 1px solid #92FE9D;
+        }
+
+        .badge-coming {
+            background: rgba(118, 75, 162, 0.2);
+            color: #b19cd9;
+            border: 1px solid #b19cd9;
+        }
+
+        .product-description {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            padding: 5px 0;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95em;
+        }
+
+        .product-features li::before {
+            content: "✓ ";
+            color: #92FE9D;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .product-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-protection);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .product-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .product-link.available-link {
+            background: var(--gradient-3);
+        }
+
+        .product-link.disabled {
+            background: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .product-link.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.3);
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-left {
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="index.html" class="back-btn">
+                    <span>←</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-icon">🛡️</div>
+        <h1>Prévoyance</h1>
+        <p>Protégez-vous et vos proches face aux aléas de la vie avec nos solutions complètes de prévoyance</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="section-title">
+            <h2>Nos Solutions de Prévoyance</h2>
+        </div>
+
+        <div class="products-grid">
+            <!-- Prima Volontés Obsèques -->
+            <div class="product-card">
+                <div class="product-icon">🕊️</div>
+                <h3 class="product-title">Prima Volontés Obsèques</h3>
+                <span class="product-badge badge-coming">Bientôt disponible</span>
+                <p class="product-description">
+                    Organisez et financez vos obsèques selon vos volontés pour soulager vos proches.
+                </p>
+                <ul class="product-features">
+                    <li>Capital jusqu'à 8 000€</li>
+                    <li>Organisation complète des obsèques</li>
+                    <li>Assistance juridique incluse</li>
+                    <li>Cotisation fixe à vie</li>
+                </ul>
+                <a href="#" class="product-link disabled">Prochainement</a>
+            </div>
+
+            <!-- Prima Capital Obsèques -->
+            <div class="product-card">
+                <div class="product-icon">💐</div>
+                <h3 class="product-title">Prima Capital Obsèques</h3>
+                <span class="product-badge badge-coming">Bientôt disponible</span>
+                <p class="product-description">
+                    Un capital versé à vos proches pour faire face aux frais d'obsèques.
+                </p>
+                <ul class="product-features">
+                    <li>Capital jusqu'à 15 000€</li>
+                    <li>Versement rapide aux bénéficiaires</li>
+                    <li>Pas de questionnaire médical</li>
+                    <li>Souscription jusqu'à 85 ans</li>
+                </ul>
+                <a href="#" class="product-link disabled">Prochainement</a>
+            </div>
+
+            <!-- Garantie Protection Accident -->
+            <div class="product-card available">
+                <div class="product-icon">🏥</div>
+                <h3 class="product-title">Garantie Protection Accident</h3>
+                <span class="product-badge badge-available">Disponible</span>
+                <p class="product-description">
+                    Protection complète contre les accidents de la vie courante pour toute la famille.
+                </p>
+                <ul class="product-features">
+                    <li>Dès 9,50€/mois</li>
+                    <li>Capital jusqu'à 250 000€</li>
+                    <li>Invalidité dès 5%</li>
+                    <li>Assistance 24h/24 7j/7</li>
+                </ul>
+                <a href="garanties.html" class="product-link available-link">Découvrir →</a>
+            </div>
+
+            <!-- Perte d'Autonomie -->
+            <div class="product-card">
+                <div class="product-icon">🤝</div>
+                <h3 class="product-title">Perte d'Autonomie</h3>
+                <span class="product-badge badge-coming">Bientôt disponible</span>
+                <p class="product-description">
+                    Anticipez la dépendance avec une rente viagère et des services d'accompagnement.
+                </p>
+                <ul class="product-features">
+                    <li>Rente jusqu'à 2 000€/mois</li>
+                    <li>Services d'aide à domicile</li>
+                    <li>Capital aménagement du logement</li>
+                    <li>Accompagnement des aidants</li>
+                </ul>
+                <a href="#" class="product-link disabled">Prochainement</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2024 AG2R LA MONDIALE - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo click to home
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
