@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivépargne II - Assurance Vie | AG2R La Mondiale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066CC;
+            --secondary-blue: #004499;
+            --accent-purple: #764ba2;
+            --accent-green: #92FE9D;
+            --accent-cyan: #48dbfb;
+            --dark-bg: #0a0e27;
+            --gradient-savings: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+            --gradient-2: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%);
+            --gradient-3: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a1a3e, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(72, 219, 251, 0.1);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(72, 219, 251, 0.5);
+            cursor: pointer;
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Key Features */
+        .key-features {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(72, 219, 251, 0.3);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(72, 219, 251, 0.6);
+            box-shadow: 0 15px 30px rgba(72, 219, 251, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #48dbfb;
+        }
+
+        .feature-description {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Investment Modes */
+        .investment-modes {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(72, 219, 251, 0.3);
+            transition: all 0.3s;
+        }
+
+        .mode-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(72, 219, 251, 0.6);
+            box-shadow: 0 20px 40px rgba(72, 219, 251, 0.3);
+        }
+
+        .mode-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #48dbfb;
+        }
+
+        .mode-list {
+            list-style: none;
+        }
+
+        .mode-list li {
+            padding: 10px 0;
+            color: rgba(255,255,255,0.8);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .mode-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #92FE9D;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(146, 254, 157, 0.3);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(146, 254, 157, 0.2);
+            border-color: rgba(146, 254, 157, 0.6);
+        }
+
+        .benefit-icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .benefit-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #92FE9D;
+        }
+
+        .benefit-text {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 20px;
+        }
+
+        .pricing-highlight {
+            background: linear-gradient(135deg, rgba(72, 219, 251, 0.1), rgba(10, 189, 227, 0.1));
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid rgba(72, 219, 251, 0.3);
+        }
+
+        .price-tag {
+            font-size: 3em;
+            font-weight: bold;
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .price-tag span {
+            font-size: 0.5em;
+            opacity: 0.8;
+        }
+
+        .price-details {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+
+        /* Tax Benefits */
+        .tax-benefits {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tax-card {
+            background: linear-gradient(135deg, rgba(146, 254, 157, 0.1), rgba(0, 201, 255, 0.1));
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(146, 254, 157, 0.3);
+        }
+
+        .tax-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tax-point {
+            text-align: center;
+        }
+
+        .tax-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #92FE9D;
+            margin-bottom: 10px;
+        }
+
+        .tax-text {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--gradient-savings);
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-top: 1px solid rgba(72, 219, 251, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .modes-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="epargne.html" class="back-btn">
+                    <span>←</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Vivépargne II</h1>
+        <div class="subtitle">L'assurance vie simple et accessible</div>
+        <p>Épargnez librement dès 35€/mois, faites fructifier votre capital et transmettez votre patrimoine dans un cadre fiscal avantageux</p>
+    </section>
+
+    <!-- Key Features -->
+    <section class="key-features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Accessible</div>
+                <div class="feature-description">
+                    Versements libres dès 300€ ou programmés dès 35€/mois
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Sécurisé</div>
+                <div class="feature-description">
+                    Fonds en euros garanti avec l'Actif général de La Mondiale
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <div class="feature-title">Performant</div>
+                <div class="feature-description">
+                    16 unités de compte pour dynamiser votre épargne
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Flexible</div>
+                <div class="feature-description">
+                    3 modes de gestion adaptés à votre profil d'investisseur
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Modes -->
+    <section class="investment-modes">
+        <div class="section-title">
+            <h2>3 Modes de Gestion Financière</h2>
+            <p>Choisissez la stratégie qui vous correspond</p>
+        </div>
+        
+        <div class="modes-grid">
+            <div class="mode-card">
+                <h3 class="mode-title">💯 Gestion 100% Actif Général</h3>
+                <p>Pour sécuriser votre capital avec un rendement défini chaque année</p>
+                <ul class="mode-list">
+                    <li>Capital garanti</li>
+                    <li>Rendement annuel défini</li>
+                    <li>Option dynamisation disponible</li>
+                    <li>Idéal pour les profils prudents</li>
+                </ul>
+            </div>
+
+            <div class="mode-card">
+                <h3 class="mode-title">⚡ Gestion Profilée</h3>
+                <p>Un équilibre entre sécurité et performance selon votre profil</p>
+                <ul class="mode-list">
+                    <li>3 profils : Classic, Dynamic, Offensif</li>
+                    <li>Répartition automatique</li>
+                    <li>Ajustement selon votre horizon</li>
+                    <li>Option sécurisation disponible</li>
+                </ul>
+            </div>
+
+            <div class="mode-card">
+                <h3 class="mode-title">🎨 Gestion Libre</h3>
+                <p>Pour les investisseurs avertis qui souhaitent piloter leur épargne</p>
+                <ul class="mode-list">
+                    <li>16 supports en unités de compte</li>
+                    <li>Arbitrages à votre initiative</li>
+                    <li>Diversification maximale</li>
+                    <li>Option sécurisation disponible</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="section-title">
+            <h2>Les Avantages Vivépargne II</h2>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3 class="benefit-title">Épargne disponible</h3>
+                <p class="benefit-text">
+                    Votre épargne reste disponible à tout moment. Effectuez des rachats partiels ou totaux selon vos besoins, sans pénalités.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3 class="benefit-title">Garantie plancher en cas de décès</h3>
+                <p class="benefit-text">
+                    Vos bénéficiaires sont protégés : ils recevront au minimum l'ensemble de vos versements nets investis, même en cas de moins-value.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3 class="benefit-title">Option dynamisation</h3>
+                <p class="benefit-text">
+                    Les intérêts annuels de votre fonds euros sont automatiquement investis sur le fonds ALM Actions Monde ISR pour optimiser votre performance.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔐</div>
+                <h3 class="benefit-title">Option sécurisation</h3>
+                <p class="benefit-text">
+                    Protégez automatiquement vos plus-values en les transférant vers l'Actif général dès qu'elles atteignent le seuil que vous avez défini.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🌱</div>
+                <h3 class="benefit-title">Investissement responsable</h3>
+                <p class="benefit-text">
+                    Accès à des fonds labellisés ISR pour donner du sens à votre épargne en investissant de manière responsable.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💻</div>
+                <h3 class="benefit-title">Gestion en ligne 24h/24</h3>
+                <p class="benefit-text">
+                    Accédez à votre contrat, effectuez vos opérations et suivez votre épargne depuis votre espace personnel sécurisé.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="section-title">
+            <h2>Une Solution Accessible</h2>
+        </div>
+        
+        <div class="pricing-highlight">
+            <div class="price-tag">35€<span>/mois</span></div>
+            <p class="price-details">
+                Versements programmés minimum<br>
+                ou versements libres dès 300€
+            </p>
+            <p style="color: #92FE9D; font-size: 1.1em;">
+                ✓ Aucuns frais d'entrée<br>
+                ✓ Arbitrage gratuit chaque année<br>
+                ✓ Frais de gestion compétitifs
+            </p>
+        </div>
+    </section>
+
+    <!-- Tax Benefits -->
+    <section class="tax-benefits">
+        <div class="section-title">
+            <h2>Une Fiscalité Avantageuse</h2>
+            <p>L'assurance vie offre un cadre fiscal privilégié</p>
+        </div>
+
+        <div class="tax-card">
+            <div class="tax-points">
+                <div class="tax-point">
+                    <div class="tax-number">8 ans</div>
+                    <div class="tax-text">Fiscalité réduite sur les rachats après 8 ans de détention</div>
+                </div>
+                <div class="tax-point">
+                    <div class="tax-number">4 600€</div>
+                    <div class="tax-text">Abattement annuel sur les gains (9 200€ pour un couple)</div>
+                </div>
+                <div class="tax-point">
+                    <div class="tax-number">152 500€</div>
+                    <div class="tax-text">Abattement par bénéficiaire en cas de transmission</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: rgba(255,255,255,0.8);">
+                Transmission au conjoint/partenaire de PACS : exonération totale de droits de succession
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Commencez à épargner dès aujourd'hui</h2>
+        <p>Nos conseillers sont là pour vous accompagner dans votre projet</p>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button">Souscrire en ligne</a>
+            <a href="#" class="cta-button secondary">Être rappelé</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AG2R LA MONDIALE - Tous droits réservés</p>
+        <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.7;">
+            Les performances passées ne préjugent pas des performances futures. Les unités de compte présentent un risque de perte en capital.
+        </p>
+    </footer>
+
+    <script>
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .mode-card, .benefit-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
