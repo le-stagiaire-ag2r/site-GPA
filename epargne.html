@@ -338,6 +338,13 @@
             border: 1px solid #48dbfb;
         }
 
+        /* Badge disponible */
+        .badge-available {
+            background: rgba(146, 254, 157, 0.2);
+            color: #92FE9D;
+            border: 1px solid #92FE9D;
+        }
+
         .product-description {
             color: rgba(255,255,255,0.8);
             margin-bottom: 25px;
@@ -363,6 +370,7 @@
             margin-right: 8px;
         }
 
+        /* Liens produits - STYLES CORRIGES */
         .product-link {
             display: inline-block;
             padding: 12px 30px;
@@ -374,13 +382,29 @@
             transition: all 0.3s;
             text-align: center;
             margin-top: auto;
+            /* SUPPRIMÉ: cursor: not-allowed; et opacity: 0.6; */
+        }
+
+        /* Lien désactivé (prochainement) */
+        .product-link.disabled {
             cursor: not-allowed;
             opacity: 0.6;
         }
 
-        .product-link:hover {
+        .product-link.disabled:hover {
             transform: none;
             box-shadow: none;
+        }
+
+        /* Lien disponible - NOUVEAU STYLE */
+        .product-link.available-link {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .product-link.available-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(72, 219, 251, 0.4);
         }
 
         /* Info Section */
@@ -510,7 +534,7 @@
         </div>
 
         <div class="products-grid">
-            <!-- Vivepargne -->
+            <!-- Vivepargne - Exemple produit disponible -->
             <div class="product-card">
                 <div class="product-icon">📈</div>
                 <h3 class="product-title">Vivepargne</h3>
@@ -521,7 +545,7 @@
                 <ul class="product-features">
                     <li>Plus de 500 supports d'investissement</li>
                     <li>Gestion pilotée disponible</li>
-                    <li>Versements libres dès 35€</li>
+                    <li>Versements libres dès 50€</li>
                     <li>0€ de frais d'entrée</li>
                     <li>Rachats partiels disponibles</li>
                 </ul>
@@ -543,7 +567,7 @@
                     <li>Fiscalité avantageuse</li>
                     <li>Souscription dès 100€</li>
                 </ul>
-                <a href="#" class="product-link">Prochainement</a>
+                <a href="#" class="product-link disabled">Prochainement</a>
             </div>
 
             <!-- Patrimoine Sélection -->
@@ -561,7 +585,7 @@
                     <li>Stratégies d'optimisation fiscale</li>
                     <li>Investissement minimum : 100 000€</li>
                 </ul>
-                <a href="#" class="product-link">Prochainement</a>
+                <a href="#" class="product-link disabled">Prochainement</a>
             </div>
         </div>
     </section>
