@@ -16,12 +16,15 @@
             --secondary-blue: #004499;
             --accent-purple: #764ba2;
             --accent-green: #92FE9D;
+            --accent-orange: #ff6b6b;
             --dark-bg: #0a0e27;
             --card-bg: rgba(255, 255, 255, 0.05);
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%);
             --gradient-3: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
-            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --gradient-health: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            --gradient-savings: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+            --gradient-protection: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         body {
@@ -70,7 +73,7 @@
             width: 80px;
             height: 80px;
             animation-delay: 0s;
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(255, 107, 107, 0.1);
         }
 
         .bg-animation span:nth-child(2) {
@@ -79,7 +82,7 @@
             height: 20px;
             animation-delay: 2s;
             animation-duration: 12s;
-            background: rgba(146, 254, 157, 0.1);
+            background: rgba(72, 219, 251, 0.1);
         }
 
         .bg-animation span:nth-child(3) {
@@ -120,7 +123,7 @@
             width: 150px;
             height: 150px;
             animation-delay: 7s;
-            background: rgba(118, 75, 162, 0.1);
+            background: rgba(254, 202, 87, 0.1);
         }
 
         .bg-animation span:nth-child(8) {
@@ -129,7 +132,7 @@
             height: 25px;
             animation-delay: 15s;
             animation-duration: 45s;
-            background: rgba(0, 168, 232, 0.1);
+            background: rgba(255, 107, 107, 0.1);
         }
 
         @keyframes move {
@@ -198,38 +201,9 @@
             50% { transform: rotate(45deg) scale(1.1); }
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-3);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         /* Hero Section */
         .hero {
-            padding: 150px 20px 80px;
+            padding: 180px 20px 100px;
             text-align: center;
             position: relative;
         }
@@ -267,34 +241,8 @@
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9em;
-        }
-
-        /* Products Section */
-        .products {
+        /* Main Categories */
+        .categories {
             padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
@@ -318,154 +266,165 @@
             font-size: 1.2em;
         }
 
-        .products-grid {
+        .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
-        .product-card {
+        .category-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 30px;
+            padding: 50px 40px;
             border: 1px solid rgba(102, 126, 234, 0.3);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            min-height: 350px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            min-height: 400px;
         }
 
-        .product-card::before {
+        .category-card::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: var(--gradient-2);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            height: 5px;
+            transition: height 0.3s ease;
         }
 
-        .product-card:hover::before {
-            transform: scaleX(1);
+        .category-card.health::before {
+            background: var(--gradient-health);
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(102, 126, 234, 0.6);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        .category-card.savings::before {
+            background: var(--gradient-savings);
         }
 
-        .product-card.available:hover {
-            background: rgba(146, 254, 157, 0.05);
+        .category-card.protection::before {
+            background: var(--gradient-protection);
         }
 
-        .product-card.coming-soon {
-            opacity: 0.7;
+        .category-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
         }
 
-        .product-card.coming-soon:hover {
-            background: rgba(118, 75, 162, 0.05);
+        .category-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
 
-        .product-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
+        .category-card.health:hover {
+            border-color: #ff6b6b;
+            box-shadow: 0 30px 60px rgba(255, 107, 107, 0.3);
+        }
+
+        .category-card.savings:hover {
+            border-color: #48dbfb;
+            box-shadow: 0 30px 60px rgba(72, 219, 251, 0.3);
+        }
+
+        .category-card.protection:hover {
+            border-color: #667eea;
+            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .category-icon {
+            font-size: 4em;
+            margin-bottom: 30px;
             display: inline-block;
             animation: float 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .product-card:nth-child(2) .product-icon {
+        .category-card:nth-child(2) .category-icon {
             animation-delay: 0.5s;
         }
 
-        .product-card:nth-child(3) .product-icon {
+        .category-card:nth-child(3) .category-icon {
             animation-delay: 1s;
         }
 
-        .product-card:nth-child(4) .product-icon {
-            animation-delay: 1.5s;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
-        .product-title {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .product-description {
-            color: rgba(255,255,255,0.7);
+        .category-title {
+            font-size: 2em;
             margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .product-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
             font-weight: bold;
-            margin-bottom: 20px;
         }
 
-        .badge-available {
-            background: rgba(146, 254, 157, 0.2);
-            color: #92FE9D;
-            border: 1px solid #92FE9D;
+        .category-card.health .category-title {
+            background: var(--gradient-health);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .badge-coming {
-            background: rgba(118, 75, 162, 0.2);
-            color: #b19cd9;
-            border: 1px solid #b19cd9;
+        .category-card.savings .category-title {
+            background: var(--gradient-savings);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .product-link {
+        .category-card.protection .category-title {
+            background: var(--gradient-protection);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-description {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .product-count {
             display: inline-block;
-            padding: 12px 30px;
-            background: var(--gradient-2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .product-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .product-link.disabled {
+            padding: 8px 20px;
             background: rgba(255, 255, 255, 0.1);
-            cursor: not-allowed;
-            opacity: 0.5;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
         }
 
-        .product-link.disabled:hover {
-            transform: none;
-            box-shadow: none;
+        .category-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: gap 0.3s;
         }
 
-        /* Features Section */
-        .features {
+        .category-card:hover .category-cta {
+            gap: 20px;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover .arrow {
+            transform: translateX(10px);
+        }
+
+        /* Stats Section */
+        .stats {
             padding: 80px 20px;
             background: rgba(0, 0, 0, 0.3);
         }
 
-        .features-grid {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
@@ -473,7 +432,7 @@
             margin: 0 auto;
         }
 
-        .feature-item {
+        .stat-item {
             text-align: center;
             padding: 30px;
             background: rgba(255, 255, 255, 0.03);
@@ -481,28 +440,23 @@
             transition: all 0.3s;
         }
 
-        .feature-item:hover {
+        .stat-item:hover {
             background: rgba(255, 255, 255, 0.08);
             transform: translateY(-5px);
         }
 
-        .feature-icon {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            display: inline-block;
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
             background: var(--gradient-3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .feature-title {
-            font-size: 1.3em;
             margin-bottom: 10px;
-            color: #fff;
         }
 
-        .feature-description {
+        .stat-label {
             color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
         }
 
         /* Footer */
@@ -511,6 +465,7 @@
             background: rgba(0, 0, 0, 0.5);
             text-align: center;
             border-top: 1px solid rgba(102, 126, 234, 0.3);
+            margin-top: 100px;
         }
 
         .footer-content {
@@ -548,33 +503,13 @@
                 font-size: 2.5em;
             }
 
-            .nav-links {
-                display: none;
-            }
-
-            .stats-container {
-                gap: 30px;
-            }
-
-            .products-grid {
+            .categories-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* Loading Animation */
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
+            .category-card {
+                min-height: auto;
             }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        .shimmer {
-            animation: shimmer 2s infinite;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            background-size: 1000px 100%;
         }
     </style>
 </head>
@@ -595,129 +530,97 @@
     <header>
         <nav>
             <div class="logo">AG2R LA MONDIALE</div>
-            <ul class="nav-links">
-                <li><a href="#products">Nos Produits</a></li>
-                <li><a href="#features">Avantages</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <h1>Bienvenue</h1>
-        <p>Découvrez notre gamme complète de solutions d'assurance pour protéger votre avenir et celui de vos proches</p>
-        
-        <div class="stats-container">
+        <p>Découvrez nos solutions complètes pour protéger votre santé, faire fructifier votre épargne et assurer votre prévoyance</p>
+    </section>
+
+    <!-- Main Categories -->
+    <section class="categories">
+        <div class="section-title">
+            <h2>Nos Univers de Protection</h2>
+            <p>Choisissez votre domaine pour découvrir nos solutions adaptées</p>
+        </div>
+
+        <div class="categories-grid">
+            <!-- Santé -->
+            <a href="sante.html" class="category-card health">
+                <div class="category-icon">🏥</div>
+                <h3 class="category-title">Santé</h3>
+                <span class="product-count">3 produits disponibles</span>
+                <p class="category-description">
+                    Des solutions complètes pour votre santé et celle de votre famille. 
+                    Remboursements optimaux, réseaux de soins partenaires et services innovants 
+                    pour prendre soin de vous au quotidien.
+                </p>
+                <div class="category-cta">
+                    <span>Découvrir nos offres santé</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Épargne -->
+            <a href="epargne.html" class="category-card savings">
+                <div class="category-icon">💰</div>
+                <h3 class="category-title">Épargne</h3>
+                <span class="product-count">3 produits disponibles</span>
+                <p class="category-description">
+                    Faites fructifier votre patrimoine avec nos solutions d'épargne flexibles. 
+                    Des placements sécurisés aux investissements dynamiques, 
+                    nous vous accompagnons dans vos projets.
+                </p>
+                <div class="category-cta">
+                    <span>Explorer nos solutions épargne</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Prévoyance -->
+            <a href="prevoyance.html" class="category-card protection">
+                <div class="category-icon">🛡️</div>
+                <h3 class="category-title">Prévoyance</h3>
+                <span class="product-count">4 produits disponibles</span>
+                <p class="category-description">
+                    Protégez-vous et vos proches face aux aléas de la vie. 
+                    Garanties accidents, obsèques et perte d'autonomie : 
+                    anticipez sereinement pour préserver votre famille.
+                </p>
+                <div class="category-cta">
+                    <span>Voir nos garanties prévoyance</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
             <div class="stat-item">
                 <div class="stat-number">15M+</div>
-                <div class="stat-label">Assurés</div>
+                <div class="stat-label">Assurés nous font confiance</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">100+</div>
-                <div class="stat-label">Ans d'expérience</div>
+                <div class="stat-label">Années d'expertise</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Produits d'assurance</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">24/7</div>
-                <div class="stat-label">Assistance</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="section-title">
-            <h2>Nos Solutions d'Assurance</h2>
-            <p>Une protection adaptée à chaque moment de votre vie</p>
-        </div>
-
-        <div class="products-grid">
-            <!-- Garantie Protection Accident -->
-            <div class="product-card available">
-                <div class="product-icon">🛡️</div>
-                <h3 class="product-title">Garantie Protection Accident</h3>
-                <span class="product-badge badge-available">Disponible</span>
-                <p class="product-description">
-                    Protégez-vous contre les accidents de la vie courante. 
-                    Couverture complète dès 9,50€/mois avec assistance 24h/24.
-                </p>
-                <a href="garanties.html" class="product-link">Découvrir →</a>
-            </div>
-
-            <!-- Assurance Santé -->
-            <div class="product-card coming-soon">
-                <div class="product-icon">🏥</div>
-                <h3 class="product-title">Assurance Santé</h3>
-                <span class="product-badge badge-coming">Bientôt disponible</span>
-                <p class="product-description">
-                    Une couverture santé complète pour vous et votre famille. 
-                    Remboursements optimaux et réseau de soins partenaires.
-                </p>
-                <a href="#" class="product-link disabled">Prochainement</a>
-            </div>
-
-            <!-- Assurance Retraite -->
-            <div class="product-card coming-soon">
-                <div class="product-icon">👴</div>
-                <h3 class="product-title">Assurance Retraite</h3>
-                <span class="product-badge badge-coming">Bientôt disponible</span>
-                <p class="product-description">
-                    Préparez sereinement votre retraite avec nos solutions 
-                    d'épargne retraite flexibles et performantes.
-                </p>
-                <a href="#" class="product-link disabled">Prochainement</a>
-            </div>
-
-            <!-- Assurance Épargne -->
-            <div class="product-card coming-soon">
-                <div class="product-icon">💰</div>
-                <h3 class="product-title">Assurance Épargne</h3>
-                <span class="product-badge badge-coming">Bientôt disponible</span>
-                <p class="product-description">
-                    Faites fructifier votre épargne avec nos solutions 
-                    d'investissement adaptées à votre profil de risque.
-                </p>
-                <a href="#" class="product-link disabled">Prochainement</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="section-title">
-            <h2>Pourquoi AG2R La Mondiale ?</h2>
-            <p>L'expertise et l'innovation au service de votre protection</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Solutions sur mesure</h3>
-                <p class="feature-description">Des garanties adaptées à votre situation et vos besoins spécifiques</p>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-icon">🤝</div>
-                <h3 class="feature-title">Accompagnement personnalisé</h3>
-                <p class="feature-description">Des conseillers dédiés pour vous guider à chaque étape</p>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Souscription simple</h3>
-                <p class="feature-description">Pas de questionnaire médical et des démarches simplifiées</p>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-icon">💎</div>
-                <h3 class="feature-title">Tarifs compétitifs</h3>
-                <p class="feature-description">Des prix justes sans augmentation liée à l'âge</p>
+                <div class="stat-label">Assistance disponible</div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="footer-content">
             <div class="footer-links">
                 <a href="#">Mentions légales</a>
@@ -733,18 +636,9 @@
     </footer>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Logo click to home
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Animate cards on scroll
@@ -761,24 +655,8 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.product-card, .feature-item').forEach(el => {
+        document.querySelectorAll('.category-card, .stat-item').forEach(el => {
             observer.observe(el);
-        });
-
-        // Add hover sound effect (optional)
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Logo click to home
-        document.querySelector('.logo').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
